@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <div id="top">
+            <ui:insert name="top">
+
+                <h:form>  
+                    <p:menubar>
+                        <p:menuitem value="Home" url="../../bienvenida/bienvenidaTemplateClient.xhtml" />
+                        <p:menuitem value="Colegios" url="../../colegios/colegiosTemplateClient.xhtml" />
+                        <p:menuitem value="Profesores" url="../../profesores/profesoresTemplateClient.xhtml" />
+                        <p:menuitem value="Alumnos" url="../alumnosTemplateClient.xhtml" />
+                    </p:menubar>
+                </h:form>
+
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="contentAlumnos">
+
+
+                <!--Registro de alumnos-->
+                <h:form>
+                    <p:panel header="Mantenedor de Alumnos" footer="version 1.0">
+                        <p:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel value="Colegio" />
+                            <p:inputText value="#{colegioC.id}" pt:type="text" pt:placeholder="Colegio"/>                            
+
+                            <p:outputLabel value="Nombre" />
+                            <p:inputText value="#{alumnosController.nombre}" pt:type="text" pt:placeholder="Nombre Alumno"/>
+
+                            <p:outputLabel value="Fecha de Nacimiento" />
+                            <p:calendar effect="fade" pt:type="text" value="#{alumnosController.fechaNac}"/>
+
+                        </p:panelGrid>
+                        <p:commandButton ajax="true" actionListener="#{alumnosController.createAlumnos()}" value="Crear"  />                     
+
+                    </p:panel>
+                </h:form>
+
+                <!--Tabla de busqueda y muestra de alumnos-->
+                <p:dataTable  var="alumnos" lazy="true" value="#{alumnoC.allAlumnos}" selectionMode="single" selection="#{alumnoC.alumnoElegido}" id="tablaAlumno">
+
+                    <p:column headerText="Id" sortBy="#{alumnos.id}" filterBy="#{alumnos.id}">
+                        <h:outputText value="#{alumnos.id}" />
+                    </p:column>
+                    <p:column headerText="Nombre" sortBy="#" filterBy="#">
+                        <h:outputText value="#{alumnos.nombre}" />
+                    </p:column>
+                    <p:column headerText="Apellido" sortBy="#" filterBy="#">
+                        <h:outputText value="#{alumnos.apellido}" />
+                    </p:column>
+                    <p:column headerText="Fecha de Nacimiento" sortBy="#" filterBy="#">
+                        <h:outputText value="#{alumnos.fechaNac}" />
+                    </p:column>
+                    <p:column headerText="Colegio" sortBy="#" filterBy="#">
+                        <h:outputText value="#{alumnos.idColegio}" />
+                    </p:column>
+                    <p:column >
+                        <p:commandButton value="Update" ajax="true" actionListener="#{alumnoC.updateAlumnos()}"/>
+                        <p:commandButton value="Delete" ajax="true" actionListener="#{alumnoC.deleteAlumnos()}" />
+                        <p:commandButton value="Ver Notas" ajax="true" actionListener="#{alumnoC.irANota()}" />
+                    </p:column>
+                </p:dataTable>
+
+                <!--Para visualizar las notas-->
+
+                <p:dialog header="Notas del alumno" widgetVar="notasAlum" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="notasAlum" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty alumnoC.alumnoElegido}" columnClasses="label,value">
+
+                            <h:outputText value="Id:" />
+                            <h:outputText value="#{alumnoC.alumnoElegido.id}" />
+
+                            <h:outputText value="Nombre" />
+                            <h:outputText value="#{alumnoC.alumnoElegido.nombre}" /> <!--Aca queremos que muestre el nombre y apelldio-->
+                            <h:outputText value="Apellido" />
+                            <h:outputText value="#{alumnoC.alumnoElegido.apellido}" /> <!--Aca queremos que muestre el nombre y apelldio-->
+
+                            <p:panelGrid  columns="2" columnClasses="label, value">
+
+                                <h:outputText value="#{alumnoC.alumnoElegido.notaList}" /> <!--Asignatura-->
+                                <h:outputText value="#"/> <!--Nota-->
+                            </p:panelGrid>
+                            <h:outputText value="Nota" />
+                            <h:outputText value="#">
+
+                            </h:outputText>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+
+            </ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom</ui:insert>
+        </div>
+
+    </h:body>
+</html>
