@@ -36,6 +36,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.18.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
@@ -43,31 +49,31 @@
         </dependency>
         
         <!--Back--> 
-<!--         https://mvnrepository.com/artifact/org.springframework/spring-context 
+         <!--https://mvnrepository.com/artifact/org.springframework/spring-context--> 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>5.1.2.RELEASE</version>
         </dependency>
 
-         https://mvnrepository.com/artifact/org.springframework/spring-core 
+         <!--https://mvnrepository.com/artifact/org.springframework/spring-core--> 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>5.1.1.RELEASE</version>
         </dependency>
-         https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons 
+         <!--https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons--> 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
             <version>2.1.1.RELEASE</version>
         </dependency>
-         https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa 
+         <!--https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa--> 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>2.1.1.RELEASE</version>
-        </dependency>-->
+        </dependency>
         
         <!--Front-->
         <!-- https://mvnrepository.com/artifact/javax.faces/jsf-api -->
@@ -75,7 +81,7 @@
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
             <version>2.1</version>
-            <scope>provided</scope>
+            <type>jar</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
         <dependency>

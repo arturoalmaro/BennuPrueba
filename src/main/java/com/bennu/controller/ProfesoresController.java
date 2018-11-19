@@ -9,13 +9,18 @@ import com.bennu.entities.Asignatura;
 import com.bennu.entities.Colegio;
 import com.bennu.entities.Profesores;
 import com.bennu.implementacion.BennuDAOFuncional;
+import com.bennu.util.RequestContextUtil;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 //import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,6 +40,7 @@ public class ProfesoresController implements Serializable{
     private Boolean activo;
     private Colegio colegio;
     private Asignatura asignatura;
+    private Profesores profesores;
 
     public ProfesoresController() {
     }
@@ -48,7 +54,7 @@ public class ProfesoresController implements Serializable{
    }
    
    public boolean createProfesores(){       
-        return func.createProfesores(nombre, apellido, fechaNac, activo);
+        return func.createProfesores(nombre, apellido, fechaNac, activo, asignatura, colegio);
         
     }
     
@@ -57,12 +63,36 @@ public class ProfesoresController implements Serializable{
     }
     
     public void deleteProfesores(){
-         func.deleteProfesores(id);
+         func.deleteProfesores(profesores);
     }
     
      public List<Profesores> getAllProfesores(){       
         return func.findAllProfesores("Profesores.findAll");
     }
+     
+      public List<Profesores> getById(){       
+        return getFunc().findByIdProfesores("Profesores.findById");
+    }
+     public List<Profesores> getByNombre(){       
+        return getFunc().findByNombreProfesores("Profesores.findByNombre");
+    }
+     public List<Profesores> getByApellido(){       
+        return getFunc().findByApellidoProfesores("Profesores.findByApellido");
+    }
+     public List<Profesores> getByFechaNac(){       
+        return getFunc().findByfechaNacProfesores("Profesores.findByFechaNac");
+    }
+     public List<Profesores> getByActivo(){       
+        return getFunc().findByfActivo("Profesores.findByActivo");
+    }
+     
+     public String ElegirColegio(){
+         return null;
+     }
+     public Asignatura ElegirAsignatura(){
+         return null;
+     }
+     
 
     /**
      * @return the nombre
@@ -147,16 +177,6 @@ public class ProfesoresController implements Serializable{
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
-    
-    public String irNotasAgregar(){
-        
-        return "/faces/view/template/notasAgregar/notasAgregarTemplateClient.xhtml";
-    }
-   
-    public String irAtras(){
-        
-        return "/faces/view/template/profesores/profesoresTemplateClient.xhtml";
-    }
 
     /**
      * @return the colegio
@@ -186,7 +206,19 @@ public class ProfesoresController implements Serializable{
         this.asignatura = asignatura;
     }
     
-    
+      public void irAgregarNota() throws IOException{        
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect(RequestContextUtil.getContexPath()+"/faces/view/template/notasAgregar/notasAgregarTemplateClient.xhtml");
+    }
+   
+    public void irAtras() throws IOException{
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect(RequestContextUtil.getContexPath()+"/faces/view/template/profesores/profesoresTemplateClient.xhtml");
+    }
+    public void irUpdate() throws IOException{
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect(RequestContextUtil.getContexPath()+"/faces/view/template/updateProfesores/updateProfesoresTemplateClient.xhtml");
+    }
     
     
     

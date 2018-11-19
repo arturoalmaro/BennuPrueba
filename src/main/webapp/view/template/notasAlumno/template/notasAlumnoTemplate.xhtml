@@ -18,7 +18,7 @@
 
         <div id="top" class="top">
             <ui:insert name="top">
-                <p:commandButton value="Atras" actionListener="#{alumnoC.irAtras()}"
+                <p:commandButton value="Atras" ajax="true" actionListener="#{alumnoC.irAtras()}"/>
             </ui:insert>
         </div>
 
@@ -31,11 +31,11 @@
                             <h:outputText value="#{notasAlum.id}" />
                     </p:column>
                         <p:column headerText="Id Alumno" sortBy="#{notasAlum.idAlumno}" filterBy="#{notasAlum.idAlumno}">
-                            <h:outputText value="#{notasAlum.idAlumno}" />
+                            <h:outputText value="#{notasAlum.idAlumno.nombre}" />
                     </p:column>
-                    </p:column>
+                   
                     <p:column headerText="Id Asignatura" sortBy="#{notasAlum.idAsignatura}" filterBy="#{notasAlum.idAsignatura}">
-                        <h:outputText value="#{notasAlum.idAsignatura}" />
+                        <h:outputText value="#{notasAlum.idAsignatura.nombre}" />
                     </p:column>
                     <p:column headerText="Nota" sortBy="#{notasAlum.nota}" filterBy="#{notasAlum.nota}">
                         <h:outputText value="#{notasAlum.nota}" />

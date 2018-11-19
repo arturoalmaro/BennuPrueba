@@ -65,7 +65,7 @@ public class Alumnos implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaNac;
     @JoinColumn(name = "id_colegio", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Colegio idColegio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAlumno")
     private List<Nota> notaList;

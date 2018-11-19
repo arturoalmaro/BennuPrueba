@@ -64,6 +64,7 @@ public class BennuDAOFuncional {
 
     //Colegio
     public static boolean createColegio(String nombre, String ubicacion) {
+        colegio.setId(Integer.SIZE);
         colegio.setNombre(nombre);
         colegio.setUbicacion(ubicacion);
         colegio = (Colegio) dao.create(colegio);        
@@ -79,7 +80,7 @@ public class BennuDAOFuncional {
     }
 
     public static void deleteColegio(int id) {
-        colegio.setId(id);
+        
         dao.delete(Colegio.class, id);
     }
     
@@ -87,7 +88,8 @@ public class BennuDAOFuncional {
     
 
     //Alumno
-    public static boolean createAlumno(String nombre, String apellido, Date fechaNac) {
+    public static boolean createAlumno(String nombre, String apellido, Date fechaNac, Colegio colegio) {
+        alumnos.setId(Integer.SIZE);
         alumnos.setNombre(nombre);
         alumnos.setApellido(apellido);
         alumnos.setFechaNac(fechaNac);
@@ -97,7 +99,7 @@ public class BennuDAOFuncional {
 
     }
 
-    public static boolean updateAlumnos(String nombre, String apellido, Date fechaNac) {
+    public static boolean updateAlumnos(String nombre, String apellido, Date fechaNac, Colegio colegio) {
         alumnos.setNombre(nombre);
         alumnos.setApellido(apellido);
         alumnos.setFechaNac(fechaNac);
@@ -112,7 +114,8 @@ public class BennuDAOFuncional {
     }
 
     //Profesores
-    public static boolean createProfesores(String nombre, String apellido, Date fechaNac, Boolean activo) {
+    public static boolean createProfesores(String nombre, String apellido, Date fechaNac, Boolean activo, Asignatura asign, Colegio colegio) {
+        prof.setId(Integer.SIZE);
         prof.setNombre(nombre);
         prof.setApellido(apellido);
         prof.setFechaNac(fechaNac);
@@ -128,20 +131,21 @@ public class BennuDAOFuncional {
         prof.setNombre(nombre);
         prof.setApellido(apellido);
         prof.setFechaNac(fechaNac);
-        prof.setIdAsignatura(asignatura);
+        prof.setIdAsignatura(asign);
         prof.setIdColegio(colegio);
         prof.setActivo(activo);
         prof = (Profesores) dao.create(prof);
         return true;
     }
 
-    public static void deleteProfesores(int id) {
-        prof.setId(id);
-        dao.delete(Profesores.class, id);
+    public static void deleteProfesores(Profesores profesores) {
+        prof.setId(prof.getId());
+        dao.delete(Profesores.class, profesores.getId());
     }
 
     //Notas
     public static boolean createNota(int puntaje) {
+        nota.setId(Integer.SIZE);
         nota.setIdAlumno(alumnos);
         nota.setIdAsignatura(asign);
         nota.setNota(puntaje);
@@ -163,7 +167,7 @@ public class BennuDAOFuncional {
     
     //Asignatura
     public static boolean createAsignatura(String nombre) {
-//        asign.setId(id);
+        asign.setId(Integer.SIZE);
         asign.setNombre(nombre);
         
         asign = (Asignatura) dao.create(asign);
@@ -196,7 +200,7 @@ public class BennuDAOFuncional {
         return listaColegio;
         
     }
-    public static List<Colegio> findAByIdColegio(String namedQuery){
+    public static List<Colegio> findByIdColegio(String namedQuery){
         listaColegio = (List<Colegio>)dao.getAll(namedQuery);
         return listaColegio;
         
@@ -207,6 +211,11 @@ public class BennuDAOFuncional {
         
     }
     public static List<Colegio> findByUbicacionColegio(String namedQuery){
+        listaColegio = (List<Colegio>)dao.getAll(namedQuery);
+        return listaColegio;
+        
+    }
+    public static List<Colegio> findNombreColegio(String namedQuery){
         listaColegio = (List<Colegio>)dao.getAll(namedQuery);
         return listaColegio;
         
@@ -230,7 +239,7 @@ public class BennuDAOFuncional {
         return listaAlumnos;
         
     }
-    public static List<Alumnos> findAByApellidoAlumnos(String namedQuery){
+    public static List<Alumnos> findByApellidoAlumnos(String namedQuery){
         listaAlumnos = (List<Alumnos>)dao.getAll(namedQuery);
         return listaAlumnos;
         
@@ -273,6 +282,11 @@ public class BennuDAOFuncional {
         
     }
     public static List<Profesores> findByfechaNacProfesores(String namedQuery){
+        listaProfesores = (List<Profesores>)dao.getAll(namedQuery);
+        return listaProfesores;
+        
+    }
+    public static List<Profesores> findByfActivo(String namedQuery){
         listaProfesores = (List<Profesores>)dao.getAll(namedQuery);
         return listaProfesores;
         

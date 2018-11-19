@@ -10,13 +10,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <title>Colegios</title>
     </h:head>
 
     <h:body>
 
         <div id="top">
             <ui:insert name="top">
+                <ui:include src="../../menu/template/menuTemplate.xhtml"/>
                 
             </ui:insert>
         </div>
@@ -24,14 +25,7 @@
         <div id="content" class="center_content">
             <ui:insert name="content">
                 
-                <h:form>  
-                    <p:menubar>
-                        <p:menuitem value="Home" url="../../bienvenida/bienvenidaTemplateClient.xhtml" />
-                        <p:menuitem value="Colegios" url="../colegiosTemplateClient.xhtml" />
-                        <p:menuitem value="Profesores" url="../../profesores/profesoresTemplateClient.xhtml" />
-                        <p:menuitem value="Alumnos" url="../../alumnos/alumnosTemplateClient.xhtml" />
-                    </p:menubar>
-                </h:form>
+                
                
                 
                 <!--Registro de Colegios-->
@@ -65,8 +59,8 @@
                     </p:column>
                
                     <p:column >
-                        <p:commandButton value="Update" ajax="true" actionListener="#{colegiosController.updateColegio()}"/>
-                        <p:commandButton value="Delete" ajax="true" actionListener="#{colegiosController.deleteColegio()}" />
+                        <p:commandButton value="Update" ajax="true" actionListener="#{colegioC.allColegio}"/>
+                        <p:commandButton value="Delete" ajax="true" actionListener="#{colegioC.deleteColegio()}" />
                     </p:column>
                 </p:dataTable>
             </ui:insert>

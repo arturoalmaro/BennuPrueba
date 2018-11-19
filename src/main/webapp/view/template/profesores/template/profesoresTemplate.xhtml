@@ -11,31 +11,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <title>Profesores</title>
     </h:head>
 
     <h:body>
 
         <div id="top">
             <ui:insert name="top">
+                <ui:include src="../../menu/template/menuTemplate.xhtml"/>
 
             </ui:insert>
         </div>
 
         <div id="content" class="center_content">
             <ui:insert name="content">
-                <h:form>  
-                    <p:menubar>
-                        <p:menuitem value="Home" url="../../bienvenida/bienvenidaTemplateClient.xhtml" />
-                        <p:menuitem value="Colegios" url="../../colegios/colegiosTemplateClient.xhtml" />
-                        <p:menuitem value="Profesores" url="../profesoresTemplateClient.xhtml" />
-                        <p:menuitem value="Alumnos" url="../../alumnos/alumnosTemplateClient.xhtml" />
 
-                    </p:menubar>
-                </h:form>
-                <p:commandButton value="Ir Agregar Nota" actionListener="#{profesoresController.irNotasAgregar()}" />
+                <p:commandButton value="Ir Agregar Nota" actionListener="#{profesoresController.irAgregarNota()}" />
 
-
+                <!--CREAR PROFESORES-->
                 <h:form>
                     <p:panel header="Mantenedor de Profesores" footer="version 1.0">
                         <p:panelGrid columns="2" columnClasses="label, value">
@@ -49,13 +42,29 @@
                             <p:calendar effect="fade" pt:type="text" value="#{profesoresController.fechaNac}"/>
 
                             <p:outputLabel value="Colegio" />
-                            <p:inputText value="#{colegioC.id}" pt:type="text" />
+                            <h:form id="selectColegio">   
+                                    <h:panelGrid columns="1">
+                                        <p:selectOneMenu  value="#{profesoresController.colegio}" immediate = "true"   editable="true">
+                                            <f:selectItems value="#{colegioC.allColegio}" var="cole" itemLabel="#{cole.nombre}" itemValue="#{cole.id}" />
+                                        </p:selectOneMenu> 
+                                    </h:panelGrid>
+                            </h:form>
+
+
+                            
 
                             <p:outputLabel value="Asignatura" />
-                            <p:inputText value="#{asignaturaController.id}" pt:type="text" />
+                            <h:form id="selectAsignatura">   
+                                    <h:panelGrid columns="1">
+                                        <p:selectOneMenu  value="#{profesoresController.asignatura}" immediate = "true"   editable="true">
+                                            <f:selectItems value="#{asignaturaController.allAsignatura}" var="asign" itemLabel="#{asign.nombre}" itemValue="#{asign.id}" />
+                                        </p:selectOneMenu> 
+                                    </h:panelGrid>
+                            </h:form>
 
-<!--                            <p:outputLabel value="Activo" />
-                            <p:inputText value="#{profesoresController.activo}" pt:type="text" />-->
+                            
+
+                            
 
                             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                 <h:outputText value="Activo " />
@@ -63,20 +72,13 @@
 
                             </h:panelGrid>
 
-
-
-
-                            <!--                            <p:selectOneMenu id="asignaturas" value="#}" style="width:150px">
-                                                            <p:ajax listener="#" update="asignatura" />
-                                                            <f:selectItem itemLabel="Asignatura" itemValue="" noSelectionOption="true" />
-                                                            <f:selectItems value="#}" />
-                                                        </p:selectOneMenu>-->
-
                         </p:panelGrid>
                         <p:commandButton ajax="true" actionListener="#{profesoresController.createProfesores()}" value="Crear"  />                     
 
                     </p:panel>
                 </h:form>
+
+                <!--LISTA PROFESORES-->
 
                 <h:form>
                     <p:dataTable var="profesores" lazy="true" value="#{profesoresController.allProfesores}">                    
@@ -89,19 +91,23 @@
                         <p:column headerText="Apellido" sortBy="#{profesores.apellido}" filterBy="#{profesores.apellido}">
                             <h:outputText value="#{profesores.apellido}" />
                         </p:column>
-                        <p:column headerText="Fecha de Nacimiento" sortBy="#{profesores.fechaNac}" filterBy="#{profesores.fechaNac}">
+                        <p:column headerText="Fecha de Nacimiento" sortBy="#{profesoresController.fechaNac}" filterBy="#{profesoresController.fechaNac}">
                             <h:outputText value="#{profesores.fechaNac}" />
                         </p:column>
                         <p:column headerText="Colegio" sortBy="#{colegioC.id}" filterBy="#{colegioC.id}">
-                            <h:outputText value="#{colegioC.id}" />
+                            <h:outputText value="#{profesores.idColegio.nombre}" />
                         </p:column>
 
                         <p:column headerText="Asignatura" sortBy="#{asignaturaController.id}" filterBy="#{asignaturaController.id}">
-                            <h:outputText value="#{asignaturaController.id}" />
+                            <h:outputText value="#{profesores.idAsignatura.nombre}" />
+                        </p:column>
+                        
+                        <p:column headerText="Activo" sortBy="#{profesores.activo}" filterBy="#{profesores.activo}">
+                            <h:outputText value="#{profesores.activo}" />
                         </p:column>
                         <p:column >
-                            <p:commandButton value="Update" ajax="true" actionListener="#"/>
-                            <p:commandButton value="Delete" ajax="true" actionListener="#" />
+                            <p:commandButton value="Update" ajax="false" actionListener="#{profesoresController.irUpdate()}"/>
+                            <p:commandButton value="Delete" ajax="false" actionListener="#{profesoresController.deleteProfesores()}" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

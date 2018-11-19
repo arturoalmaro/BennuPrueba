@@ -17,20 +17,14 @@
 
         <div id="top">
             <ui:insert name="top">
+                <ui:include src="../../menu/template/menuTemplate.xhtml"/>
                            
             </ui:insert>
         </div>
-
+       
         <div id="content" class="center_content">
             <ui:insert name="content">
-                <h:form>  
-                    <p:menubar>
-                        <p:menuitem value="Home" url="../bienvenidaTemplateClient.xhtml" />
-                        <p:menuitem value="Colegios" url="../../colegios/colegiosTemplateClient.xhtml" />
-                        <p:menuitem value="Profesores" url="../../profesores/profesoresTemplateClient.xhtml" />
-                        <p:menuitem value="Alumnos" url="../../alumnos/alumnosTemplateClient.xhtml" />
-                    </p:menubar>
-                </h:form>
+               
                 
                 
                 

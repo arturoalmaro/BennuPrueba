@@ -32,6 +32,7 @@ public class ColegiosController implements Serializable{
     private int id;
     private String nombre, ubicacion;
     private List<Colegio> listColegio;
+    private Colegio colegio;
 
     
 
@@ -58,13 +59,21 @@ public class ColegiosController implements Serializable{
     }
     
     public void deleteColegio(){
-         func.deleteColegio(id);
+         func.deleteColegio(colegio.getId());
     }
     
     public List<Colegio> getAllColegio(){       
         return func.findAllColegio("Colegio.findAll");
     }
-    
+      public List<Colegio> getById(){       
+        return func.findByIdColegio("Colegio.findById");
+    }
+     public List<Colegio> getByNombre(){       
+        return func.findByNombreColegio("Colegio.findByNombre");
+    }
+     public List<Colegio> getElNombre(){       
+        return func.findByNombreColegio("Colegio.findNombreColegio");
+    }
     
 
     /**
@@ -108,6 +117,20 @@ public class ColegiosController implements Serializable{
      */
     public void setUbicacion(String ubicacion) {        
         this.ubicacion = ubicacion;
+    }
+
+    /**
+     * @return the colegio
+     */
+    public Colegio getColegio() {
+        return colegio;
+    }
+
+    /**
+     * @param colegio the colegio to set
+     */
+    public void setColegio(Colegio colegio) {
+        this.colegio = colegio;
     }
     
     

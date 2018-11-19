@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top"></ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+                <h:form>
+                    <p:panel header="Update Alumnos" footer="version 1.0">
+                        <p:panelGrid columns="2" columnClasses="label, value">
+                            <p:outputLabel value="Colegio" />
+                            <p:inputText value="#{colegioC.id}" pt:type="text" pt:placeholder="Colegio"/>                            
+
+                            <p:outputLabel value="Nombre" />
+                            <p:inputText value="#{alumnoC.nombre}" pt:type="text" pt:placeholder="Nombre Alumno"/>
+
+                            <p:outputLabel value="Fecha de Nacimiento" />
+                            <p:calendar effect="fade" pt:type="text" value="#{alumnoC.fechaNac}"/>
+
+                        </p:panelGrid>
+                        <p:commandButton ajax="true" actionListener="#{alumnoC.updateAlumnos()}"  value="Actualizar"  />                     
+
+                    </p:panel>
+                </h:form>
+            
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

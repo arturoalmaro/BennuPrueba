@@ -58,6 +58,13 @@ public class AsignaturaController implements Serializable{
      public List<Asignatura> getAllAsignatura(){       
         return func.findAllAsignatura("Asignatura.findAll");
     }
+     
+       public List<Asignatura> getById(){       
+        return func.findByIdAsignatura("Asignatura.findById");
+    }
+     public List<Asignatura> getByNombre(){       
+        return func.findByNombreAsignatura("Asignatura.findByNombre");
+    }
 
     /**
      * @return the nombre

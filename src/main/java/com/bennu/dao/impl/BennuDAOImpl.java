@@ -55,6 +55,8 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
         em.persist(t);
         entityTransaction.commit();
         em.refresh(t);
+//        em.getEntityManagerFactory().getCache().evictAll();
+       
         
         return t;
         
@@ -65,8 +67,11 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
 
     @Override
     public void delete(Class type, Object id) {
-        Object ref = this.em.getReference(type, id);
-        this.em.remove(ref);
+        em.getTransaction().begin();
+        this.em.remove(id);
+        em.getTransaction().commit();
+//        Object ref = this.em.getReference(type, id);
+//        this.em.remove(ref);
     }
 
     @Override
