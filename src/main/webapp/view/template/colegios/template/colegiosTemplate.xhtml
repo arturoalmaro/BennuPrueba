@@ -39,7 +39,7 @@
                             <p:inputText value="#{colegioC.ubicacion}" pt:type="text" pt:placeholder="Nombre Colegio"/>
                                                        
                         </p:panelGrid>
-                        <p:commandButton actionListener="#{colegioC.createColegio()}" value="Crear"  />                     
+                        <p:commandButton actionListener="#{colegioC.createColegio()}" value="Crear" type="button"  />                     
                                                 
                     </p:panel>
                 </h:form>
@@ -58,8 +58,8 @@
                         <h:outputText value="#{colegios.ubicacion}" />
                     </p:column>
                
-                    <p:column >
-                        <p:commandButton value="Update" ajax="true" actionListener="#{colegioC.allColegio}"/>
+                    <p:column  >
+                        <p:commandButton value="Update" ajax="true" actionListener="#{colegioC.irUpdate()}"/>
                         <p:commandButton value="Delete" ajax="true" actionListener="#{colegioC.deleteColegio()}" />
                     </p:column>
                 </p:dataTable>

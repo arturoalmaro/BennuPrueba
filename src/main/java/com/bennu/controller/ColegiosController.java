@@ -9,12 +9,15 @@ package com.bennu.controller;
 import com.bennu.dao.BennuDAO;
 import com.bennu.entities.Colegio;
 import com.bennu.implementacion.BennuDAOFuncional;
+import com.bennu.util.RequestContextUtil;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 //import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 //import javax.inject.Named;
 
@@ -59,7 +62,8 @@ public class ColegiosController implements Serializable{
     }
     
     public void deleteColegio(){
-         func.deleteColegio(colegio.getId());
+       colegio =  func.findColegio(colegio.getId());
+         func.deleteColegio(colegio);
     }
     
     public List<Colegio> getAllColegio(){       
@@ -73,6 +77,15 @@ public class ColegiosController implements Serializable{
     }
      public List<Colegio> getElNombre(){       
         return func.findByNombreColegio("Colegio.findNombreColegio");
+    }
+     
+      public void irAtras() throws IOException{
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect(RequestContextUtil.getContexPath()+"/faces/view/template/colegios/colegiosTemplateClient.xhtml");
+    }
+    public void irUpdate() throws IOException{
+        
+        FacesContext.getCurrentInstance().getExternalContext().redirect(RequestContextUtil.getContexPath()+"/faces/view/template/updateColegio/updateColegioTemplateClient.xhtml");
     }
     
 

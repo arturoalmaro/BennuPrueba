@@ -16,10 +16,14 @@
     <h:body>
 
         <div id="top" class="top">
-            <ui:insert name="top"></ui:insert>
+            <ui:insert name="top">
+                <p:commandButton value="Atras" actionListener="#{alumnoC.irAtras()}"/>
+            </ui:insert>
         </div>
 
         <div id="content" class="center_content">
+            
+            
             <ui:insert name="content">
                 <h:form>
                     <p:panel header="Update Alumnos" footer="version 1.0">

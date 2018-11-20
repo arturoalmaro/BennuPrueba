@@ -79,10 +79,17 @@ public class BennuDAOFuncional {
         return true;
     }
 
-    public static void deleteColegio(int id) {
+    public static void deleteColegio(Colegio colegio) {        
         
-        dao.delete(Colegio.class, id);
+         dao.delete(Colegio.class,colegio.getId());
     }
+    
+    public static Colegio findColegio(int id) {
+        colegio.setId(id);
+     return colegio = (Colegio) dao.find(Colegio.class, colegio.getId());   
+    }
+    
+    
     
 
     
@@ -110,7 +117,7 @@ public class BennuDAOFuncional {
 
     public static void deleteAlumnos(int id) {
         alumnos.setId(id);
-       dao.delete(Alumnos.class, id);
+       dao.delete(Alumnos.class, alumnos.getId());
     }
 
     //Profesores

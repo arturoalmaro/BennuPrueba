@@ -22,10 +22,11 @@ HAVING promedio > 5
 
 
 
-SELECT top 1 a.nombre, a.apellido, MAX(n.nota) 
+SELECT a.nombre, a.apellido, MAX(n.nota) 
 FROM alumnos a
 JOIN nota n
 ON n.id_alumno = a.id 
 JOIN asignatura aa
 ON aa.id = n.id_asignatura 
 GROUP BY a.nombre, a.apellido 
+

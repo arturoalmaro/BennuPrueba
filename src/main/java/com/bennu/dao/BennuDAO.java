@@ -26,32 +26,20 @@ public interface BennuDAO<T>{
     
 //    Crear 
     public T create(T t);
-//    public void createColegio(String nombre, String ubicacion);
-//    public void createAlumno(String nombre, String apellido, Date fechaNac, int idColegio);
-//    public void createProfesor(String nombre, String apellido, Date fechaNac, int idColegio, int idAsignatura);
-//    public void createNota(int nota, int idAsignatura);
-//    public void createAsignatura(String nombreAsignatura);
+
     
 //    Borrar
     public void delete(Class type, Object id);
-//    public void deleteColegio(Colegio colegio);
-//    public void deleteAlumno(Alumnos alumno);
-//    public void deleteProfesor(Profesores profesor);
-//    public void deleteNota(Nota nota);
-//    public void deleteAsignatura(Asignatura asignatura);
+
 //    
 //    Actualizar
     public T update(T t);
-//    public void updateColegio(Colegio colegio);
-//    public void updateAlumno(Alumnos alumnos);
-//    public void updateProfesor(Profesores profesores);
-//    public void updateNota(Nota nota);
-//    public void updateAsignatura(Asignatura asignatura);
+
     
 //    Leer
     
-//    public T findById(Class type, Object id);
 //    public List findWithNamedQuery(String queryName);
+    public   T find(Class type,Object id);
     public List<T> getAll(String namedQuery);
     public List<T> getById (String namedQuery);
     public List<T> getByNombre (String namedQuery);
@@ -59,41 +47,7 @@ public interface BennuDAO<T>{
     public List<T> getByFechaNac (String namedQuery);
     
     
-//    public List<T> findAll(String namedQuery);
-//    public List<T> findById(String namedQuery);
-//    public List<T> findByNombre(String namedQuery);
-//    public List<T> findByApellido(String namedQuery);
-//    public List<T> findByFechaNac(String namedQuery);
-//            
-//    public List<T> findByAsignatura(String namedQuery);
-//    
-//    public List<T> findByNota(String namedQuery);
-    
-    
-//    //Alumnos
-//    public List<Alumnos> findAllAlumnos();
-//    public List<Alumnos> findByIdAlumnos();
-//    public List<Alumnos> findByNombreAlumnos();
-//    public List<Alumnos> findByApellidoAlumnos();
-//    public List<Alumnos> findByFechaNacAlumnos();
-//    
-//    //Colegios
-//    public List<Colegio> findAllColegios();
-//    public List<Colegio> findByIdColegios();
-//    public List<Colegio> findByNombreColegios();
-//    public List<Colegio> findByUbicacionColegios();
-//    
-//    //Profesores
-//    public List<Profesores> findAllProfesores();
-//    public List<Profesores> findByIdProfesores();
-//    public List<Profesores> findByAsignaturaProfesores();
-//    public List<Profesores> findByNombreProfesores();
-//    public List<Profesores> findByApellidoProfesores();
-//    
-//    //Nota
-//    
-//    public List<Nota> findAllNotas();
-//    public List<Nota> findByNotaNotas();
+
     
     
     
