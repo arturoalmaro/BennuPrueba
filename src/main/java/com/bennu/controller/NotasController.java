@@ -5,6 +5,8 @@
  */
 package com.bennu.controller;
 
+import com.bennu.entities.Alumnos;
+import com.bennu.entities.Asignatura;
 import com.bennu.entities.Nota;
 import com.bennu.implementacion.BennuDAOFuncional;
 import java.io.Serializable;
@@ -26,6 +28,8 @@ import javax.inject.Named;
 public class NotasController implements Serializable{
     
     private int id, puntaje;
+    private Alumnos alumnos; 
+    private Asignatura asignatura;
 
     public NotasController() {
     }
@@ -41,18 +45,18 @@ public class NotasController implements Serializable{
    }
     
     
-    public boolean createNota(){
+    public boolean createNota(int puntaje, Alumnos alumnos, Asignatura asignatura){
        
-        return func.createNota(getId());
+        return func.createNota(puntaje,alumnos,asignatura);
         
     }
     
     public  boolean updateNota(){
-        return func.updateNota(getId());
+        return func.updateNota(id);
     }
     
-    public void deleteNota(){
-         func.deleteNota(getId());
+    public void deleteNota(Nota nota){
+         func.deleteNota(nota);
     }
     
     
@@ -100,6 +104,34 @@ public class NotasController implements Serializable{
      */
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
+    }
+
+    /**
+     * @return the alumnos
+     */
+    public Alumnos getAlumnos() {
+        return alumnos;
+    }
+
+    /**
+     * @param alumnos the alumnos to set
+     */
+    public void setAlumnos(Alumnos alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    /**
+     * @return the asignatura
+     */
+    public Asignatura getAsignatura() {
+        return asignatura;
+    }
+
+    /**
+     * @param asignatura the asignatura to set
+     */
+    public void setAsignatura(Asignatura asignatura) {
+        this.asignatura = asignatura;
     }
     
     

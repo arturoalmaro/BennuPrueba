@@ -66,8 +66,8 @@ public class AlumnosController implements Serializable{
         return getFunc().updateAlumnos(getNombre(), getApellido(), getFechaNac(), colegio);
     }
     
-    public void deleteAlumnos(){
-         getFunc().deleteAlumnos(getId());
+    public void deleteAlumnos(Alumnos alumnos){
+         getFunc().deleteAlumnos(alumnos);
     }
     
      public List<Alumnos> getAllAlumnos(){       

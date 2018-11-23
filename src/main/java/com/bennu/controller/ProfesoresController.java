@@ -62,7 +62,7 @@ public class ProfesoresController implements Serializable{
         return func.updateProfesores(nombre, apellido, fechaNac, activo);
     }
     
-    public void deleteProfesores(){
+    public void deleteProfesores(Profesores profesores){
          func.deleteProfesores(profesores);
     }
     

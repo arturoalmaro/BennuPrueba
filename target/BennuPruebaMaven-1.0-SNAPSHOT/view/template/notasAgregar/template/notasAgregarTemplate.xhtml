@@ -17,7 +17,7 @@
 
         <div id="top">
             <ui:insert name="top">
-                <p:commandButton value="Atras" actionListener="#{profesoresController.irAtras()}"/>
+                <p:commandButton value="Atras" ajax="true" actionListener="#{profesoresController.irAtras()}"/>
         </ui:insert>
     </div>
 
@@ -57,11 +57,11 @@
                         <h:outputText value="#{notasAlum.nota}" />
                     </p:column>
                    
-                    <p:column >
-                        <p:commandButton value="Update" ajax="true" actionListener="#{notasController.updateNota()}"/>
-                        <p:commandButton value="Delete" ajax="true" actionListener="#{notasController.deleteNota()}" />
+                    <!--<p:column >-->
+                        <!--<p:commandButton value="Update" ajax="true" actionListener="#{notasController.updateNota(notasAlum)}"/>-->
+                        <!--<p:commandButton value="Delete" ajax="true" actionListener="#{notasController.deleteNota(notasAlum)}" />-->
                         
-                    </p:column>
+                    <!--</p:column>-->
                 </p:dataTable>     
 
 

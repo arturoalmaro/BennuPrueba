@@ -42,29 +42,26 @@
                             <p:calendar effect="fade" pt:type="text" value="#{profesoresController.fechaNac}"/>
 
                             <p:outputLabel value="Colegio" />
-                            <h:form id="selectColegio">   
+                            <!--<h:form id="selectColegio">-->   
                                     <h:panelGrid columns="1">
                                         <p:selectOneMenu  value="#{profesoresController.colegio}" immediate = "true"   editable="true">
                                             <f:selectItems value="#{colegioC.allColegio}" var="cole" itemLabel="#{cole.nombre}" itemValue="#{cole.id}" />
                                         </p:selectOneMenu> 
                                     </h:panelGrid>
-                            </h:form>
+                            <!--</h:form>-->
 
 
                             
 
                             <p:outputLabel value="Asignatura" />
-                            <h:form id="selectAsignatura">   
+                            <!--<h:form id="selectAsignatura">-->   
                                     <h:panelGrid columns="1">
                                         <p:selectOneMenu  value="#{profesoresController.asignatura}" immediate = "true"   editable="true">
                                             <f:selectItems value="#{asignaturaController.allAsignatura}" var="asign" itemLabel="#{asign.nombre}" itemValue="#{asign.id}" />
                                         </p:selectOneMenu> 
                                     </h:panelGrid>
-                            </h:form>
-
-                            
-
-                            
+                            <!--</h:form>-->                          
+                           
 
                             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                                 <h:outputText value="Activo " />
@@ -106,8 +103,8 @@
                             <h:outputText value="#{profesores.activo}" />
                         </p:column>
                         <p:column >
-                            <p:commandButton value="Update" ajax="false" actionListener="#{profesoresController.irUpdate()}"/>
-                            <p:commandButton value="Delete" ajax="false" actionListener="#{profesoresController.deleteProfesores()}" />
+                            <p:commandButton value="Update" ajax="true" actionListener="#{profesoresController.irUpdate()}"/>
+                            <p:commandButton value="Delete" ajax="true"  actionListener="#{profesoresController.deleteProfesores(profesores)}" />
                         </p:column>
                     </p:dataTable>
                 </h:form>

@@ -64,7 +64,7 @@ public class BennuDAOFuncional {
 
     //Colegio
     public static boolean createColegio(String nombre, String ubicacion) {
-        colegio.setId(Integer.SIZE);
+        
         colegio.setNombre(nombre);
         colegio.setUbicacion(ubicacion);
         colegio = (Colegio) dao.create(colegio);        
@@ -73,19 +73,22 @@ public class BennuDAOFuncional {
     }
 
     public static boolean updateColegio(String nombre, String ubicacion) {
+        
         colegio.setNombre(nombre);
         colegio.setUbicacion(ubicacion);
         colegio = (Colegio) dao.update(colegio);
         return true;
     }
 
-    public static void deleteColegio(Colegio colegio) {        
+    public static void deleteColegio(Colegio colegio) {   
+        Colegio coleg = new Colegio();
+//        int id = colegio.getId();
         
          dao.delete(Colegio.class,colegio.getId());
     }
-    
-    public static Colegio findColegio(int id) {
-        colegio.setId(id);
+    @SuppressWarnings("unchecked")
+    public static Colegio findColegio(Colegio colegio) {
+//       return null; 
      return colegio = (Colegio) dao.find(Colegio.class, colegio.getId());   
     }
     
@@ -96,11 +99,11 @@ public class BennuDAOFuncional {
 
     //Alumno
     public static boolean createAlumno(String nombre, String apellido, Date fechaNac, Colegio colegio) {
-        alumnos.setId(Integer.SIZE);
+        
         alumnos.setNombre(nombre);
         alumnos.setApellido(apellido);
         alumnos.setFechaNac(fechaNac);
-        alumnos.setIdColegio(colegio);
+        alumnos.setIdColegio(new Colegio(colegio.getId()));
         alumnos = (Alumnos) dao.create(alumnos);
         return true;
 
@@ -111,24 +114,24 @@ public class BennuDAOFuncional {
         alumnos.setApellido(apellido);
         alumnos.setFechaNac(fechaNac);
         alumnos.setIdColegio(colegio);
-        alumnos = (Alumnos) dao.create(alumnos);
+        alumnos = (Alumnos) dao.update(alumnos);
        return true;
     }
 
-    public static void deleteAlumnos(int id) {
-        alumnos.setId(id);
-       dao.delete(Alumnos.class, alumnos.getId());
+    public static void deleteAlumnos(Alumnos alumnos) {
+//        alumnos.setId(id);
+       dao.deleteAlumnos(alumnos.getId());
     }
 
     //Profesores
     public static boolean createProfesores(String nombre, String apellido, Date fechaNac, Boolean activo, Asignatura asign, Colegio colegio) {
-        prof.setId(Integer.SIZE);
+//        prof.setId(Integer.SIZE);
         prof.setNombre(nombre);
         prof.setApellido(apellido);
         prof.setFechaNac(fechaNac);
-        prof.setIdAsignatura(asign);
+        prof.setIdAsignatura(new Asignatura(asign.getId()));
         prof.setActivo(activo);
-        prof.setIdColegio(colegio);
+        prof.setIdColegio(new Colegio(colegio.getId()));
         prof = (Profesores) dao.create(prof);
         return true;
 
@@ -138,23 +141,23 @@ public class BennuDAOFuncional {
         prof.setNombre(nombre);
         prof.setApellido(apellido);
         prof.setFechaNac(fechaNac);
-        prof.setIdAsignatura(asign);
-        prof.setIdColegio(colegio);
+        prof.setIdAsignatura(new Asignatura(asign.getId()));
+        prof.setIdColegio(new Colegio(colegio.getId()));
         prof.setActivo(activo);
-        prof = (Profesores) dao.create(prof);
+        prof = (Profesores) dao.update(prof);
         return true;
     }
 
     public static void deleteProfesores(Profesores profesores) {
-        prof.setId(prof.getId());
-        dao.delete(Profesores.class, profesores.getId());
+//        prof.setId(prof.getId());
+        dao.deleteProfesores(profesores.getId());
     }
 
     //Notas
-    public static boolean createNota(int puntaje) {
-        nota.setId(Integer.SIZE);
-        nota.setIdAlumno(alumnos);
-        nota.setIdAsignatura(asign);
+    public static boolean createNota(int puntaje, Alumnos alumnos, Asignatura asign) {
+//        nota.setId(Integer.SIZE);
+        nota.setIdAlumno(new Alumnos(alumnos.getId()));
+        nota.setIdAsignatura(new Asignatura(asign.getId()));
         nota.setNota(puntaje);
         nota = (Nota) dao.create(nota);
         return true;
@@ -163,18 +166,18 @@ public class BennuDAOFuncional {
 
     public static boolean updateNota(int puntaje) {
         nota.setNota(puntaje);
-        nota = (Nota) dao.create(nota);
+        nota = (Nota) dao.update(nota);
         return true;
     }
 
-    public static void deleteNota(int id) {
-        nota.setId(id);
-        dao.delete(Nota.class, id);
+    public static void deleteNota(Nota nota) {
+//        nota.setId(id);
+        dao.deleteNota(nota.getId());
     }
     
     //Asignatura
     public static boolean createAsignatura(String nombre) {
-        asign.setId(Integer.SIZE);
+//        asign.setId(Integer.SIZE);
         asign.setNombre(nombre);
         
         asign = (Asignatura) dao.create(asign);
@@ -186,13 +189,13 @@ public class BennuDAOFuncional {
 //        asign.setId(id);
         asign.setNombre(nombre);
         
-        asign = (Asignatura) dao.create(asign);
+        asign = (Asignatura) dao.update(asign);
         return true;
     }
 
-    public static void deleteAsignatura(int id) {
-        asign.setId(id);
-        dao.delete(Asignatura.class, id);
+    public static void deleteAsignatura(Asignatura asignatura) {
+//        asign.setId(id);
+        dao.deleteAsignatura(asignatura.getId());
         
         
     }

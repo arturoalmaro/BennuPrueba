@@ -61,6 +61,35 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
     
 
     @Override
+    public void deleteColegio(int id) {
+        em.getTransaction().begin();
+        Colegio ref = this.em.find(Colegio.class, id);
+        this.em.remove(ref);
+        em.getTransaction().commit();
+    }
+    @Override
+    public void deleteProfesores(Object id) {
+        Profesores ref = em.getReference(Profesores.class, id);
+        this.em.remove(ref);
+    }
+    @Override
+    public void deleteAsignatura(Object id) {
+        Asignatura ref = em.getReference(Asignatura.class, id);
+        this.em.remove(ref);
+    }
+    @Override
+    public void deleteNota(Object id) {
+        em.getTransaction().begin();
+        Nota ref = em.getReference(Nota.class, id);
+        this.em.remove(ref);
+        em.getTransaction().commit();
+    }
+    @Override
+    public void deleteAlumnos(Object id) {
+        Alumnos ref = em.getReference(Alumnos.class, id);
+        this.em.remove(ref);
+    }
+    @Override
     public void delete(Class type, Object id) {
         Object ref = this.em.getReference(type, id);
         this.em.remove(ref);
@@ -72,7 +101,7 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
         
     }
     
-    
+    @SuppressWarnings("unchecked")
         @Override
     public T find(Class type, Object id) {
      return (T) this.em.find(type, id);   

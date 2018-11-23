@@ -51,8 +51,8 @@ public class AsignaturaController implements Serializable{
         return func.updateAsignatura(nombre);
     }
     
-    public void deleteAsignatura(){
-         func.deleteAsignatura(id);
+    public void deleteAsignatura(Asignatura asignatura){
+         func.deleteAsignatura(asignatura);
     }
     
      public List<Asignatura> getAllAsignatura(){       

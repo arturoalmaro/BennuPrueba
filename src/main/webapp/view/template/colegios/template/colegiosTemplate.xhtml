@@ -18,51 +18,51 @@
         <div id="top">
             <ui:insert name="top">
                 <ui:include src="../../menu/template/menuTemplate.xhtml"/>
-                
+
             </ui:insert>
         </div>
 
         <div id="content" class="center_content">
             <ui:insert name="content">
-                
-                
-               
-                
+
+
+
+
                 <!--Registro de Colegios-->
                 <h:form>
                     <p:panel header="Mantenedor de Colegios" footer="version 1.0">
                         <p:panelGrid columns="2" columnClasses="label, value">
                             <p:outputLabel value="Nombre de Colegio" />
                             <p:inputText value="#{colegioC.nombre}" pt:type="text" pt:placeholder="Colegio"/>                            
-                            
+
                             <p:outputLabel value="Ubicación" />
                             <p:inputText value="#{colegioC.ubicacion}" pt:type="text" pt:placeholder="Nombre Colegio"/>
-                                                       
+
                         </p:panelGrid>
-                        <p:commandButton actionListener="#{colegioC.createColegio()}" value="Crear" type="button"  />                     
-                                                
+                        <p:commandButton actionListener="#{colegioC.createColegio()}" update="colegios" value="Crear" type="button"  ajax="true"/>                     
+
                     </p:panel>
                 </h:form>
-                
+
                 <!--Tabla de busqueda y muestra de colegios-->
-                <h:form></h:form>
-                <p:dataTable var="colegios" lazy="true" value="#{colegioC.allColegio}">
-              
-                    <p:column headerText="Id" sortBy="#{colegios.id}" filterBy="#{colegios.id}">
-                        <h:outputText value="#{colegios.id}" />
-                    </p:column>
-                    <p:column headerText="Nombre Colegio" sortBy="#{colegioC.nombre}" filterBy="#{colegioC.nombre}">
-                        <h:outputText value="#{colegios.nombre}" />
-                    </p:column>
-                    <p:column headerText="Ubicación" sortBy="#{colegioC.ubicacion}" filterBy="#{colegioC.ubicacion}">
-                        <h:outputText value="#{colegios.ubicacion}" />
-                    </p:column>
-               
-                    <p:column  >
-                        <p:commandButton value="Update" ajax="true" actionListener="#{colegioC.irUpdate()}"/>
-                        <p:commandButton value="Delete" ajax="true" actionListener="#{colegioC.deleteColegio()}" />
-                    </p:column>
-                </p:dataTable>
+                <h:form>
+                    <p:dataTable var="colegios" lazy="true" value="#{colegioC.allColegio}" >
+
+                        <p:column headerText="Id" sortBy="#{colegios.id}" filterBy="#{colegios.id}">
+                            <h:outputText value="#{colegios.id}" />
+                        </p:column>
+                        <p:column headerText="Nombre Colegio" sortBy="#{colegioC.nombre}" filterBy="#{colegioC.nombre}">
+                            <h:outputText value="#{colegios.nombre}" />
+                        </p:column>
+                        <p:column headerText="Ubicación" sortBy="#{colegioC.ubicacion}" filterBy="#{colegioC.ubicacion}">
+                            <h:outputText value="#{colegios.ubicacion}" />
+                        </p:column>
+                        <p:column  >
+                            <p:commandButton value="Update" ajax="true" actionListener="#{colegioC.irUpdate()}"/>
+                            <p:commandButton value="Delete" ajax="false" update="colegios" actionListener="#{colegioC.deleteColegio(colegios)}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
             </ui:insert>
         </div>
 

@@ -29,6 +29,11 @@ public interface BennuDAO<T>{
 
     
 //    Borrar
+    public void deleteColegio(int id);
+    public void deleteProfesores(Object id);
+    public void deleteAsignatura(Object id);
+    public void deleteNota(Object id);
+    public void deleteAlumnos(Object id);
     public void delete(Class type, Object id);
 
 //    

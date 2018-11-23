@@ -52,13 +52,13 @@
                             <p:calendar effect="fade" pt:type="text" value="#{alumnoC.fechaNac}"/>
                             
                             <p:outputLabel value="Colegio" />
-                        <h:form id="selectColegio">   
+                        <!--<h:form id="selectColegio">-->   
                                     <h:panelGrid columns="1">
                                         <p:selectOneMenu  value="#{alumnoC.colegio}" immediate = "true"   editable="true">
                                             <f:selectItems value="#{colegioC.allColegio}" var="colegio" itemLabel="#{colegio.nombre}" itemValue="#{colegio.id}" />
                                         </p:selectOneMenu> 
                                     </h:panelGrid>
-                            </h:form>
+                            <!--</h:form>-->
                         <p:commandButton ajax="true" actionListener="#{alumnoC.createAlumnos()}"  value="Crear"  /> 
 
                         </p:panelGrid>
@@ -68,7 +68,7 @@
 
                     </p:panel>
                 </h:form>
-
+                <h:form>
                 <!--Tabla de busqueda y muestra de alumnos-->
                 <p:dataTable  var="alumnos" lazy="true" value="#{alumnoC.allAlumnos}"   id="tablaAlumno">
 
@@ -89,11 +89,11 @@
                     </p:column>
                     <p:column >
                         <p:commandButton value="Update" ajax="true"   actionListener="#{alumnoC.irUpdate()}"/>
-                        <p:commandButton value="Delete" ajax="true"  onclick="#{alumnoC.id}" actionListener="#{alumnoC.deleteAlumnos(alumnoC.id)}"/>  
+                        <p:commandButton value="Delete" ajax="true"  onclick="#{alumnoC.id}" actionListener="#{alumnoC.deleteAlumnos(alumnos)}"/>  
                         <p:commandButton value="Ver Notas" ajax="true" actionListener="#{alumnoC.irANota()}" />
                     </p:column>
                 </p:dataTable>
-
+</h:form>
               
             </ui:insert>
         </div>

@@ -61,8 +61,8 @@ public class ColegiosController implements Serializable{
         return func.updateColegio(nombre, ubicacion);
     }
     
-    public void deleteColegio(){
-       colegio =  func.findColegio(colegio.getId());
+    public void deleteColegio(Colegio colegio){
+//       colegio =  func.findColegio(colegio);
          func.deleteColegio(colegio);
     }
     
