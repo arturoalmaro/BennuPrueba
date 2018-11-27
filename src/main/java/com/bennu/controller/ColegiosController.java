@@ -12,6 +12,7 @@ import com.bennu.implementacion.BennuDAOFuncional;
 import com.bennu.util.RequestContextUtil;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 //import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
@@ -40,6 +41,8 @@ public class ColegiosController implements Serializable{
     
 
     public ColegiosController() {
+        listColegio = new ArrayList<Colegio>();
+        listColegio = func.findAllColegio("Colegio.findAll");
     }
     
         
@@ -66,7 +69,8 @@ public class ColegiosController implements Serializable{
          func.deleteColegio(colegio);
     }
     
-    public List<Colegio> getAllColegio(){       
+    public List<Colegio> getAllColegio(){  
+        
         return func.findAllColegio("Colegio.findAll");
     }
       public List<Colegio> getById(){       
@@ -133,10 +137,19 @@ public class ColegiosController implements Serializable{
     }
 
     /**
+     * @param idColegio
      * @return the colegio
      */
-    public Colegio getColegio() {
-        return colegio;
+    public Colegio getColegio(Integer id) {
+         if (id == null){
+            throw new IllegalArgumentException("no id provided");
+        }
+        for (Colegio colegio : listColegio){
+            if (id.equals(colegio.getId())){
+                return colegio;
+            }
+        }
+        return null;
     }
 
     /**
@@ -144,6 +157,20 @@ public class ColegiosController implements Serializable{
      */
     public void setColegio(Colegio colegio) {
         this.colegio = colegio;
+    }
+
+    /**
+     * @return the listColegio
+     */
+    public List<Colegio> getListColegio() {
+        return listColegio;
+    }
+
+    /**
+     * @param listColegio the listColegio to set
+     */
+    public void setListColegio(List<Colegio> listColegio) {
+        this.listColegio = listColegio;
     }
     
     

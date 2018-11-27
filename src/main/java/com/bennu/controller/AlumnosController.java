@@ -38,7 +38,7 @@ public class AlumnosController implements Serializable{
     
     private String nombre, apellido;
     private Date fechaNac;
-    private int id;
+    private int id, idColegio;
     private Colegio colegio;
     private Asignatura asignatura;
     
@@ -58,7 +58,7 @@ public class AlumnosController implements Serializable{
     
     public boolean createAlumnos(){
        
-        return getFunc().createAlumno(getNombre(), getApellido(), getFechaNac(), colegio);
+        return func.createAlumno(nombre, apellido, fechaNac, idColegio);
         
     }
     
@@ -203,6 +203,20 @@ public class AlumnosController implements Serializable{
      */
     public void setAsignatura(Asignatura asignatura) {
         this.asignatura = asignatura;
+    }
+
+    /**
+     * @return the idColegio
+     */
+    public int getIdColegio() {
+        return idColegio;
+    }
+
+    /**
+     * @param idColegio the idColegio to set
+     */
+    public void setIdColegio(int idColegio) {
+        this.idColegio = idColegio;
     }
    
     

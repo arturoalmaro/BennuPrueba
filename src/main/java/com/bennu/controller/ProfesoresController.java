@@ -34,9 +34,9 @@ import javax.inject.Named;
 @RequestScoped
 public class ProfesoresController implements Serializable{
     
-    private String nombre, apellido;
+    private String nombre, apellido, colegioSeleccionado, asignaturaSeleccionada;
     private Date fechaNac;
-    private int id;
+    private int id, idCol, idAs;
     private Boolean activo;
     private Colegio colegio;
     private Asignatura asignatura;
@@ -54,9 +54,15 @@ public class ProfesoresController implements Serializable{
    }
    
    public boolean createProfesores(){       
-        return func.createProfesores(nombre, apellido, fechaNac, activo, asignatura, colegio);
+        return func.createProfesores(nombre, apellido, fechaNac, activo, Integer.parseInt(asignaturaSeleccionada), Integer.parseInt(colegioSeleccionado));
+        
         
     }
+//   public boolean createProfesores(){       
+//        return func.createProfesores(nombre, apellido, fechaNac, activo, asignaturaSeleccionada, colegioSeleccionado);
+//        
+//        
+//    }
     
     public  boolean updateProfesores(){
         return func.updateProfesores(nombre, apellido, fechaNac, activo);
@@ -86,12 +92,12 @@ public class ProfesoresController implements Serializable{
         return getFunc().findByfActivo("Profesores.findByActivo");
     }
      
-     public String ElegirColegio(){
-         return null;
-     }
-     public Asignatura ElegirAsignatura(){
-         return null;
-     }
+//     public String ElegirColegio(){
+//         return null;
+//     }
+//     public Asignatura ElegirAsignatura(){
+//         return null;
+//     }
      
 
     /**
@@ -120,6 +126,34 @@ public class ProfesoresController implements Serializable{
      */
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    
+      /**
+     * @return the colegioSeleccionado
+     */
+    public String getColegioSeleccionado() {
+        return colegioSeleccionado;
+    }
+
+    /**
+     * @param colegioSeleccionado the colegioSeleccionado to set
+     */
+    public void setColegioSeleccionado(String colegioSeleccionado) {
+        this.colegioSeleccionado = colegioSeleccionado;
+    }
+
+    /**
+     * @return the asignaturaSeleccionada
+     */
+    public String getAsignaturaSeleccionada() {
+        return asignaturaSeleccionada;
+    }
+
+    /**
+     * @param asignaturaSeleccionada the asignaturaSeleccionada to set
+     */
+    public void setAsignaturaSeleccionada(String asignaturaSeleccionada) {
+        this.asignaturaSeleccionada = asignaturaSeleccionada;
     }
 
     /**
@@ -219,6 +253,36 @@ public class ProfesoresController implements Serializable{
         
         FacesContext.getCurrentInstance().getExternalContext().redirect(RequestContextUtil.getContexPath()+"/faces/view/template/updateProfesores/updateProfesoresTemplateClient.xhtml");
     }
+
+    /**
+     * @return the idCol
+     */
+    public int getIdCol() {
+        return idCol;
+    }
+
+    /**
+     * @param idCol the idCol to set
+     */
+    public void setIdCol(int idCol) {
+        this.idCol = idCol;
+    }
+
+    /**
+     * @return the idAs
+     */
+    public int getIdAs() {
+        return idAs;
+    }
+
+    /**
+     * @param idAs the idAs to set
+     */
+    public void setIdAs(int idAs) {
+        this.idAs = idAs;
+    }
+
+  
     
     
     

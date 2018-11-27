@@ -11,14 +11,21 @@ import com.bennu.entities.Asignatura;
 import com.bennu.entities.Colegio;
 import com.bennu.entities.Nota;
 import com.bennu.entities.Profesores;
+import com.bennu.util.RequestContextUtil;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
+import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.transaction.UserTransaction;
 
 
 /**
@@ -47,7 +54,10 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
     public T create(T t) {
         EntityTransaction entityTransaction = em.getTransaction();
         entityTransaction.begin();
+//        UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:app/bennuprueba");
+//        transaction.begin();
         em.persist(t);
+//        transaction.commit();
         entityTransaction.commit();
         em.refresh(t);
 //        em.getEntityManagerFactory().getCache().evictAll();
@@ -62,32 +72,46 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
 
     @Override
     public void deleteColegio(int id) {
-        em.getTransaction().begin();
-        Colegio ref = this.em.find(Colegio.class, id);
+        EntityTransaction entityTransaction = em.getTransaction();
+        Colegio ref = this.em.find(Colegio.class, id);        
+        entityTransaction.begin();        
+//        if(ref !=null){
         this.em.remove(ref);
-        em.getTransaction().commit();
+        entityTransaction.commit();
+        
     }
     @Override
     public void deleteProfesores(Object id) {
-        Profesores ref = em.getReference(Profesores.class, id);
+        EntityTransaction entityTransaction = em.getTransaction();
+        Profesores ref = this.em.find(Profesores.class, id);        
+        entityTransaction.begin();        
         this.em.remove(ref);
+        entityTransaction.commit();
     }
     @Override
     public void deleteAsignatura(Object id) {
-        Asignatura ref = em.getReference(Asignatura.class, id);
+       EntityTransaction entityTransaction = em.getTransaction();
+        Asignatura ref = this.em.find(Asignatura.class, id);        
+        entityTransaction.begin();        
         this.em.remove(ref);
+        entityTransaction.commit();
     }
     @Override
     public void deleteNota(Object id) {
-        em.getTransaction().begin();
-        Nota ref = em.getReference(Nota.class, id);
+       EntityTransaction entityTransaction = em.getTransaction();
+        Nota ref = this.em.find(Nota.class, id);        
+        entityTransaction.begin();        
         this.em.remove(ref);
-        em.getTransaction().commit();
+        entityTransaction.commit();
     }
     @Override
     public void deleteAlumnos(Object id) {
-        Alumnos ref = em.getReference(Alumnos.class, id);
+        EntityTransaction entityTransaction = em.getTransaction();
+        Alumnos ref = this.em.find(Alumnos.class, id);        
+        entityTransaction.begin();        
         this.em.remove(ref);
+        entityTransaction.commit();
+        
     }
     @Override
     public void delete(Class type, Object id) {
@@ -97,7 +121,13 @@ public class BennuDAOImpl<T> implements BennuDAO<T>{
 
     @Override
     public T update(T t) {
-        return (T)this.em.merge(t);
+        EntityTransaction entityTransaction = em.getTransaction();             
+        entityTransaction.begin();        
+        em.merge(t);
+        entityTransaction.commit();
+        em.refresh(t);
+        return t;
+        
         
     }
     

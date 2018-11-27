@@ -54,12 +54,12 @@
                             <p:outputLabel value="Colegio" />
                         <!--<h:form id="selectColegio">-->   
                                     <h:panelGrid columns="1">
-                                        <p:selectOneMenu  value="#{alumnoC.colegio}" immediate = "true"   editable="true">
-                                            <f:selectItems value="#{colegioC.allColegio}" var="colegio" itemLabel="#{colegio.nombre}" itemValue="#{colegio.id}" />
+                                        <p:selectOneMenu  value="#{alumnoC.idColegio}" >
+                                            <f:selectItems  value="#{colegioC.allColegio}" var="colegio" itemLabel="#{colegio.nombre}" itemValue="#{colegio.id}" />
                                         </p:selectOneMenu> 
                                     </h:panelGrid>
                             <!--</h:form>-->
-                        <p:commandButton ajax="true" actionListener="#{alumnoC.createAlumnos()}"  value="Crear"  /> 
+                        <p:commandButton ajax="false" actionListener="#{alumnoC.createAlumnos()}"  value="Crear"  /> 
 
                         </p:panelGrid>
                          
